@@ -16,7 +16,6 @@ const Home = () => {
         // setResPerPage(res.data.resPerPage)
         setProductsCount(res.data.productsCount)
         setLoading(false)
-
     }
     useEffect( () => { 
 		getProducts()
