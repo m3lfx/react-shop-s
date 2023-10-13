@@ -30,9 +30,7 @@ const Home = () => {
                 <section id="products" className="container mt-5">
                     <div className="row">
                         {products && products.map(product => (
-                            <div keys={product._id} className="col-sm-12 col-md-6 col-lg-3 my-3">
-                                <Product key={product._id } product={product} />
-                            </div>
+                            <Product key={product._id} product={product} />
                         ))}
                     </div>
                 </section>
