@@ -16,19 +16,26 @@ const Home = () => {
         setCurrentPage(pageNumber)
     }
 
-    const getProducts = async () => {
-        let link = `http://localhost:4001/api/v1/products`
+    const getProducts = async (page=1) => {
+        let link = ''
+        if (page) {
+            link = `http://localhost:4001/api/v1/products/?page=${page}`
+        }
+        else {
+            link = `http://localhost:4001/api/v1/products`
+        }
+       
         console.log(link)
         let res = await axios.get(link)
         console.log(res)
         setProducts(res.data.products)
-        // setResPerPage(res.data.resPerPage)
+        setResPerPage(res.data.resPerPage)
         setProductsCount(res.data.productsCount)
         setLoading(false)
     }
     useEffect(() => {
-        getProducts()
-    }, []);
+        getProducts(currentPage)
+    }, [currentPage]);
 
     let count = productsCount
     return (
