@@ -10,7 +10,7 @@ import axios from 'axios'
 
 
 
-const ProductDetails = ({ match }) => {
+const ProductDetails = () => {
 
     const [loading, setLoading] = useState(true)
     const [product, setProduct] = useState({})
@@ -35,10 +35,8 @@ const ProductDetails = ({ match }) => {
 
     useEffect(() => {
         productDetails(id)
-
         // if (error) {
         //     alert.error(error);
-
         // }
     }, [id,]);
 
