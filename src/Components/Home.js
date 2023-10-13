@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import MetaData from './Layout/Metadata'
 import axios from 'axios'
 const Home = () => {
@@ -18,6 +18,9 @@ const Home = () => {
         setLoading(false)
 
     }
+    useEffect( () => { 
+		getProducts()
+	}, [] );
     return (
         <Fragment>
             <MetaData title={'Buy Best Products Online'} />
