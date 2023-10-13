@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import MetaData from './Layout/Metadata'
 import axios from 'axios'
+import Pagination from 'react-js-pagination'
 import Product from './Product/Product'
 import Loader from './Layout/Loader'
 const Home = () => {
@@ -8,6 +9,12 @@ const Home = () => {
     const [products, setProducts] = useState([])
     const [error, setError] = useState()
     const [productsCount, setProductsCount] = useState(0)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [resPerPage, setResPerPage] = useState(0)
+
+    function setCurrentPageNo(pageNumber) {
+        setCurrentPage(pageNumber)
+    }
 
     const getProducts = async () => {
         let link = `http://localhost:4001/api/v1/products`
@@ -22,6 +29,8 @@ const Home = () => {
     useEffect(() => {
         getProducts()
     }, []);
+
+    let count = productsCount
     return (
         <>
             {loading ? <Loader /> : (<Fragment>
@@ -36,6 +45,21 @@ const Home = () => {
                             ))}
                         </div>
                     </section>
+                    {resPerPage <= count && (
+                        <div className="d-flex justify-content-center mt-5">
+                            <Pagination
+                                activePage={currentPage}
+                                itemsCountPerPage={resPerPage}
+                                totalItemsCount={productsCount}
+                                onChange={setCurrentPageNo}
+                                nextPageText={'Next'}
+                                prevPageText={'Prev'}
+                                firstPageText={'First'}
+                                lastPageText={'Last'}
+                                itemClass="page-item"
+                                linkClass="page-link"
+                            />
+                        </div>)}
                 </div>
             </Fragment>
             )}
