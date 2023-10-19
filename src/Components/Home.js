@@ -4,6 +4,8 @@ import axios from 'axios'
 import Pagination from 'react-js-pagination'
 import Product from './Product/Product'
 import Loader from './Layout/Loader'
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 const Home = () => {
     const [loading, setLoading] = useState(true)
     const [products, setProducts] = useState([])
@@ -11,6 +13,8 @@ const Home = () => {
     const [productsCount, setProductsCount] = useState(0)
     const [currentPage, setCurrentPage] = useState(1)
     const [resPerPage, setResPerPage] = useState(0)
+    const [filteredProductsCount, setFilteredProductsCount] = useState(0)
+    const [price, setPrice] = useState([1, 1000]);
 
     function setCurrentPageNo(pageNumber) {
         setCurrentPage(pageNumber)
